@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      nama_pelanggan: {
+      nama_pelanggaran: {
         type: Sequelize.STRING
       },
       poin: {

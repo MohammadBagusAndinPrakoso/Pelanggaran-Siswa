@@ -11,6 +11,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      /*
+        relasi: pelanggaran -> detail_pelanggaran_siswa (parent ke child)
+        key: id_pelanggaran
+        parent: pelanggaran, child: detail_pelanggaran_siswa
+        tipe: 1 pelanggaran tercatat sebanyak beberapa kali di detail_pelanggaran_siswa
+      */
+     this.hasMany(models.detail_pelanggaran_siswa, {
+       foreignKey: "id_pelanggaran",
+       as: "detail_pelanggaran_siswa"
+     })
     }
   }
   pelanggaran.init({
@@ -19,11 +29,12 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true
     },
-    nama_pelanggan: DataTypes.STRING,
+    nama_pelanggaran: DataTypes.STRING,
     poin: DataTypes.DOUBLE
   }, {
     sequelize,
     modelName: 'pelanggaran',
+    tableName: 'pelanggaran'
   });
   return pelanggaran;
 };

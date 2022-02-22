@@ -11,6 +11,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      /*
+        relasi: siswa -> pelanggaran_siswa
+        key: id_siswa
+        parent: siswa, child: pelanggaran_siswa (siswa menjadi parent karena id_siswa menjadi primary key (PK) di tabel siswa,
+        dan pelanggaran_siswa menjadi child karena id_siswa menjadi foreign key (FK) di tabel pelanggaran_siswa)
+        tipe: 1 siswa melakukan ... pelanggaran
+
+      */
     }
   }
   siswa.init({

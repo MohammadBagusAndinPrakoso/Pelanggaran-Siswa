@@ -1,6 +1,4 @@
-const { ValidationErrorItemType } = require("sequelize/types")
-
-// memanggil file model untuk siswa
+// memanggil file model untuk pelanggaran
 let modelPelanggaran = require("../models/index").pelanggaran
 
 exports.getDataPelanggaran = (request, response) => {
@@ -10,7 +8,7 @@ exports.getDataPelanggaran = (request, response) => {
     })
     .catch(error => {
         return response.json({
-            message: ValidationErrorItemType.message
+            message: error.message
         })
     })
 }
@@ -18,7 +16,7 @@ exports.getDataPelanggaran = (request, response) => {
 exports.addDataPelanggaran = (request, response) => {
     // tampung data request
     let newPelanggaran = {
-        nama: request.body.nama,
+        nama_pelanggaran: request.body.nama_pelanggaran,
         poin: request.body.poin
     }
     
@@ -38,7 +36,7 @@ exports.addDataPelanggaran = (request, response) => {
 exports.editDataPelanggaran = (request, response) => {
     let id = request.params.id_pelanggaran
     let dataPelanggaran = {
-        nama: request.body.nama,
+        nama_pelanggaran: request.body.nama_pelanggaran,
         poin: request.body.poin
     }
 
@@ -55,7 +53,7 @@ exports.editDataPelanggaran = (request, response) => {
     })
 }
 
-exports.deleteDataSiswa = (request, response) => {
+exports.deleteDataPelanggaran = (request, response) => {
     let id = request.params.id_pelanggaran
 
     modelPelanggaran.destroy({where: {id_pelanggaran: id}})

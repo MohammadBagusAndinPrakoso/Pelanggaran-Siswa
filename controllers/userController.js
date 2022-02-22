@@ -20,12 +20,12 @@ exports.addDataUser = (request, response) => {
     
     // tampung data request
     let newUser = {
-        nama: request.body.nama,
-        nickname: request.body.nickname,
+        nama_user: request.body.nama,
+        username: request.body.username,
         password: password
     }
 
-    modelUser.findAll()
+    modelUser.create(newUser)
     .then(result => {
         return response.json({
             message: `Data siswa berhasil ditambahkan`
@@ -44,8 +44,8 @@ exports.editDataUser = (request, response) => {
     let password = md5(request.body.password)
     
     let dataUser = {
-        nama: request.body.nama,
-        nickname: request.body.nickname,
+        nama_user: request.body.nama,
+        username: request.body.username,
         password: password
     }
 
