@@ -12,13 +12,16 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       /*
-        relasi: siswa -> pelanggaran_siswa
+        relasi: siswa -> pelanggaran_siswa (parent ke child)
         key: id_siswa
         parent: siswa, child: pelanggaran_siswa (siswa menjadi parent karena id_siswa menjadi primary key (PK) di tabel siswa,
         dan pelanggaran_siswa menjadi child karena id_siswa menjadi foreign key (FK) di tabel pelanggaran_siswa)
-        tipe: 1 siswa melakukan ... pelanggaran
-
+        tipe: 1 siswa melakukan banyak pelanggaran (one to many)
       */
+     this.hasMany(models.pelanggaran_siswa, {
+       foreignKey: "id_siswa",
+       as: "pelanggaran_siswa"
+     })
     }
   }
   siswa.init({
@@ -30,7 +33,8 @@ module.exports = (sequelize, DataTypes) => {
     nis: DataTypes.STRING,
     nama: DataTypes.STRING,
     kelas: DataTypes.STRING,
-    poin: DataTypes.INTEGER
+    poin: DataTypes.INTEGER,
+    image: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'siswa',

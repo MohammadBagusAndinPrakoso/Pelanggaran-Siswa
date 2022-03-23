@@ -13,6 +13,23 @@ exports.getDataPelanggaran = (request, response) => {
     })
 }
 
+exports.findPelanggaran = async (request, response) => {
+    let keyword = request.body.keyword
+    let sequelize = require(`sequelize`)
+    let Op = sequelize.Op
+
+    /**
+     * query = select * from pelanggaran where
+     * nama_pelanggaran like '%keyword%'
+     */
+    let dataPelanggaran = await modelPelanggaran.findAll({
+        where: {
+            nama_pelanggaran: { [Op.like]: `%${keyword}%` }
+        }
+    })
+    return response.json(dataPelanggaran)
+}
+
 exports.addDataPelanggaran = (request, response) => {
     // tampung data request
     let newPelanggaran = {
